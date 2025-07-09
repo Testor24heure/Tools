@@ -357,7 +357,7 @@ function wintools{
 
     $form71 = New-Object System.Windows.Forms.Form
     $form71.Text = "Outils Windows"
-    $form71.Size = New-Object System.Drawing.Size(600, 400)
+    $form71.Size = New-Object System.Drawing.Size(600, 440)
     $form71.StartPosition = "CenterScreen"
     $form71.BackColor = $backred
     $form71.ForeColor = $textwhite
@@ -637,10 +637,22 @@ function wintools{
     })
     $form71.Controls.Add($button79)
 
+#### Compmgmt ####
+
+    $buttoncm = New-Object System.Windows.Forms.Button
+    $buttoncm.Text = "Gestion ordinateur"
+    $buttoncm.Location = New-Object System.Drawing.Point(10, 210)
+    $buttoncm.Size = New-Object System.Drawing.Size(175, 30)
+    $buttoncm.Add_Click({
+    compmgmt.msc
+    })
+    $form71.Controls.Add($buttoncm)
+
+
 #### info poste ####
 
     $labelinfo = New-Object System.Windows.Forms.Label
-    $labelinfo.Location = New-Object System.Drawing.Point(230,220)
+    $labelinfo.Location = New-Object System.Drawing.Point(230,260)
     $labelinfo.font = $boldbutton
     $labelinfo.Size = New-Object System.Drawing.Size(150,20)
     $labelinfo.Text = "Information poste :"
@@ -648,7 +660,7 @@ function wintools{
 
     $button31 = New-Object System.Windows.Forms.Button
     $button31.Text = "Rapport batterie"
-    $button31.Location = New-Object System.Drawing.Point(10, 250)
+    $button31.Location = New-Object System.Drawing.Point(10, 290)
     $button31.Size = New-Object System.Drawing.Size(175, 30)
     $button31.Add_Click({
     Start-Process cmd -Verb runAs -WorkingDirectory "$env:USERPROFILE" -ArgumentList '/c powercfg /batteryreport && "%userprofile%\battery-report.html"'
@@ -657,7 +669,7 @@ function wintools{
 
     $button32 = New-Object System.Windows.Forms.Button
     $button32.Text = "Numéro de série"
-    $button32.Location = New-Object System.Drawing.Point(200, 250)
+    $button32.Location = New-Object System.Drawing.Point(200, 290)
     $button32.Size = New-Object System.Drawing.Size(175, 30)
     $button32.Add_Click({
     Start-Process cmd -Verb runAs -WorkingDirectory "$env:USERPROFILE" -ArgumentList '/c wmic bios get serialnumber && pause'
@@ -666,19 +678,18 @@ function wintools{
 
     $button33 = New-Object System.Windows.Forms.Button
     $button33.Text = "Information système"
-    $button33.Location = New-Object System.Drawing.Point(390, 250)
+    $button33.Location = New-Object System.Drawing.Point(390, 290)
     $button33.Size = New-Object System.Drawing.Size(175, 30)
     $button33.Add_Click({
     msinfo32
     })
     $form71.Controls.Add($button33)
 
-
 #### Sortie ####
 
     $buttonquit = New-Object System.Windows.Forms.Button
     $buttonquit.Text = "Quitter"
-    $buttonquit.Location = New-Object System.Drawing.Point(210, 300)
+    $buttonquit.Location = New-Object System.Drawing.Point(210, 340)
     $buttonquit.Size = New-Object System.Drawing.Size(150, 30)
     $buttonquit.Font = $boldbutton
     $buttonquit.BackColor = $quitbackcolor
@@ -693,36 +704,15 @@ function app{
 
     $form8 = New-Object System.Windows.Forms.Form
     $form8.Text = "Menu des Applications"
-    $form8.Size = New-Object System.Drawing.Size(540, 280)
+    $form8.Size = New-Object System.Drawing.Size(300, 380)
     $form8.StartPosition = "CenterScreen"
     $form8.BackColor = $backred
     $form8.ForeColor = $textwhite
 
-    $labelsupp = New-Object System.Windows.Forms.Label
-    $labelsupp.Location = New-Object System.Drawing.Point(10,20)
-    $labelsupp.font = $boldbutton
-    $labelsupp.Size = New-Object System.Drawing.Size(120,20)
-    $labelsupp.Text = "Support :"
-    $form8.Controls.Add($labelsupp)
-
-    $labelanal = New-Object System.Windows.Forms.Label
-    $labelanal.Location = New-Object System.Drawing.Point(180,20)
-    $labelanal.font = $boldbutton
-    $labelanal.Size = New-Object System.Drawing.Size(120,20)
-    $labelanal.Text = "Analyse :"
-    $form8.Controls.Add($labelanal)
-
-    $labelutil = New-Object System.Windows.Forms.Label
-    $labelutil.Location = New-Object System.Drawing.Point(360,20)
-    $labelutil.font = $boldbutton
-    $labelutil.Size = New-Object System.Drawing.Size(120,20)
-    $labelutil.Text = "Utilitaires :"
-    $form8.Controls.Add($labelutil)
-
     $button81 = New-Object System.Windows.Forms.Button
     $button81.Text = "Intel support assistant"
-    $button81.Location = New-Object System.Drawing.Point(10, 50)
-    $button81.Size = New-Object System.Drawing.Size(150, 30)
+    $button81.Location = New-Object System.Drawing.Point(10, 10)
+    $button81.Size = New-Object System.Drawing.Size(250, 30)
     $button81.Add_Click({
         Start-Process https://dsadata.intel.com/installer
     })
@@ -730,8 +720,8 @@ function app{
 
     $button82 = New-Object System.Windows.Forms.Button
     $button82.Text = "Malwarebytes"
-    $button82.Location = New-Object System.Drawing.Point(180, 50)
-    $button82.Size = New-Object System.Drawing.Size(150, 30)
+    $button82.Location = New-Object System.Drawing.Point(10, 50)
+    $button82.Size = New-Object System.Drawing.Size(250, 30)
     $button82.Add_Click({
         Start-Process "https://www.malwarebytes.com/fr/mwb-download/thankyou"
     })
@@ -739,8 +729,8 @@ function app{
 
     $button83 = New-Object System.Windows.Forms.Button
     $button83.Text = "ADWCleaner"
-    $button83.Location = New-Object System.Drawing.Point(180, 90)
-    $button83.Size = New-Object System.Drawing.Size(150, 30)
+    $button83.Location = New-Object System.Drawing.Point(10, 90)
+    $button83.Size = New-Object System.Drawing.Size(250, 30)
     $button83.Add_Click({
         Start-Process https://adwcleaner.malwarebytes.com/adwcleaner?channel=release
     })
@@ -748,8 +738,8 @@ function app{
 
     $button84 = New-Object System.Windows.Forms.Button
     $button84.Text = "Dell Power Manager"
-    $button84.Location = New-Object System.Drawing.Point(10, 90)
-    $button84.Size = New-Object System.Drawing.Size(150, 30)
+    $button84.Location = New-Object System.Drawing.Point(10, 130)
+    $button84.Size = New-Object System.Drawing.Size(250, 30)
     $button84.Add_Click({
         Start-Process https://dl.dell.com/FOLDER07383273M/5/Dell-Power-Manager-Service_GD7J6_WIN64_3.9.0_A00_03.EXE
     })
@@ -757,8 +747,8 @@ function app{
 
     $button85 = New-Object System.Windows.Forms.Button
     $button85.Text = "Dell support assist"
-    $button85.Location = New-Object System.Drawing.Point(10, 130)
-    $button85.Size = New-Object System.Drawing.Size(150, 30)
+    $button85.Location = New-Object System.Drawing.Point(10, 170)
+    $button85.Size = New-Object System.Drawing.Size(250, 30)
     $button85.Add_Click({
         Start-Process https://downloads.dell.com/serviceability/catalog/SupportAssistinstaller.exe
     })
@@ -766,25 +756,16 @@ function app{
 
     $button86 = New-Object System.Windows.Forms.Button
     $button86.Text = "Treesize (portable)"
-    $button86.Location = New-Object System.Drawing.Point(360, 50)
-    $button86.Size = New-Object System.Drawing.Size(150, 30)
+    $button86.Location = New-Object System.Drawing.Point(10, 210)
+    $button86.Size = New-Object System.Drawing.Size(250, 30)
     $button86.Add_Click({
         Start-Process https://customers.jam-software.de/downloadTrial.php?article_no=101
     })
     $form8.Controls.Add($button86)
 
-    $button87 = New-Object System.Windows.Forms.Button
-    $button87.Text = "Ip Advanced Scan"
-    $button87.Location = New-Object System.Drawing.Point(360, 90)
-    $button87.Size = New-Object System.Drawing.Size(150, 30)
-    $button87.Add_Click({
-        Start-Process https://download.advanced-ip-scanner.com/download/files/Advanced_IP_Scanner_2.5.4594.1.exe
-    })
-    $form8.Controls.Add($button87)
-
     $buttonquit = New-Object System.Windows.Forms.Button
     $buttonquit.Text = "Quitter"
-    $buttonquit.Location = New-Object System.Drawing.Point(180, 200)
+    $buttonquit.Location = New-Object System.Drawing.Point(60, 280)
     $buttonquit.Size = New-Object System.Drawing.Size(150, 30)
     $buttonquit.Font = $boldbutton
     $buttonquit.BackColor = $quitbackcolor
